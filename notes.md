@@ -25,6 +25,30 @@ console.log(square(12));
 // → 144
 ```
 
+### Bindings and scopes
+
+### Nested scope
+
+### Functions as values
+
+### Declaration notation
+
+### Arrow functions
+
+### The call stack
+
+### Optional Arguments
+
+### Closure
+
+### Recursion
+
+###Growing functions
+
+### Functions and side effects
+
+### Summary
+
 ## Chapter 4
 
 ## Chapter 5
