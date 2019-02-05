@@ -1,12 +1,25 @@
 # Notes
 
 *You can write notes for each chapter here*.
+## Intro
 
-## Chapter 1
+## Chapter 1 | Values, Types, and Operators
+
+### Values
+
 
 ## Chapter 2
 
-## Chapter 3
+## Chapter 3 | Functions
+Functions zijn het brood en boter van JS.
+
+###Defining a function
+'''const square = function(x) {
+  return x * x;
+};
+
+console.log(square(12));
+// → 144'''
 
 ## Chapter 4
 
