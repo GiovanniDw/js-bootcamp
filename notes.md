@@ -43,7 +43,7 @@ console.log(square(12));
 
 ### Recursion
 
-###Growing functions
+### Growing functions
 
 ### Functions and side effects
 
