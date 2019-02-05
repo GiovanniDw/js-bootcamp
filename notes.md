@@ -13,7 +13,7 @@
 ## Chapter 3 | Functions
 Functions zijn het brood en boter van JS.
 
-###Defining a function
+### Defining a function
 
 Value of a Binding is a function
 ```javascript
