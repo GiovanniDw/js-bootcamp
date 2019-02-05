@@ -14,12 +14,16 @@
 Functions zijn het brood en boter van JS.
 
 ###Defining a function
-'''const square = function(x) {
+
+Value of a Binding is a function
+```javascript
+const square = function(x) {
   return x * x;
 };
 
 console.log(square(12));
-// → 144'''
+// → 144
+```
 
 ## Chapter 4
 
