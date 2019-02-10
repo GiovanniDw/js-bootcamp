@@ -82,7 +82,16 @@ vermenigvuldigen gebeurt eerst, maar net als bij wiskunde kan het ook zo:
 ( 100  +  4 ) *  11
 ```
 
-## Chapter 2
+### Samenvatting
+
+We hebben in dit hoofdstuk vier typen JavaScript-waarden bekeken: getallen, tekenreeksen, Booleans en niet-gedefinieerde waarden.
+
+Dergelijke waarden worden gemaakt door hun naam ( `true`, `null`) of waarde ( `13`, `"abc"``) in te voeren. U kunt waarden combineren en transformeren met operatoren. We zagen binaire operatoren voor rekenkundige ( `+`, `-`, `*`, `/`, en `%`), tekenreekssamenvoegingsoperator ( `+`), vergelijking ( `==`, `!=`, `===`, `!==`, `<`, `>`, `<=`, `>=`), en logica ( `&&`, `||`), evenals verschillende unaire operatoren ( -om een nummer te ontkennen, !te ontkennen logisch en typeofom het type van een waarde te vinden) en een ternaire operator ( ?:) om een ​​van de twee waarden te kiezen op basis van een derde waarde.
+
+Dit geeft u voldoende informatie om JavaScript als een zakrekenmachine te gebruiken, maar niet veel meer. In het volgende hoofdstuk worden deze uitdrukkingen gecombineerd in standaardprogramma's.
+## Chapter 2 | Program Structure
+### Expressions and statements
+
 
 ## Chapter 3 | Functions
 Functions zijn het brood en boter van JS.
