@@ -36,7 +36,28 @@
 
 ## Chapter 1 | Values, Types, and Operators
 
-### Values
+### Values/Waarden
+Chunks/Blokken worden waarden/values genoemd  
+Alle waarde zijn gemaakt van bits.
+
+Waarden zijn:
+* Getallen
+* Stukjes text
+* Functies
+* etc..
+
+Bij maken van value alleen naam ervan gebruiken.
+
+### Numbers
+Values/Waarden van numbers zijn numerieke Values. Deze worden zo geschreven:
+
+```javascript
+13
+```
+
+Gebruik dit in een programma en het bit patroon word gemaakt in het geheugen van een computer.
+
+> JavaScript gebruikt een vast aantal bits, 64 daarvan, om een ​​enkele getalwaarde op te slaan. Er zijn slechts zoveel patronen die u kunt maken met 64 bits, wat betekent dat het aantal verschillende nummers dat kan worden weergegeven, beperkt is. Met N decimale cijfers kunt u 10 N- nummers weergeven. Evenzo, gegeven 64 binaire cijfers, kunt u 2 64 verschillende getallen voorstellen, wat ongeveer 18 quintillion is (een 18 met 18 nullen erna). Dat is veel.
 
 
 ## Chapter 2
