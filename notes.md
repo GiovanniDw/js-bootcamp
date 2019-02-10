@@ -59,6 +59,28 @@ Gebruik dit in een programma en het bit patroon word gemaakt in het geheugen van
 
 > JavaScript gebruikt een vast aantal bits, 64 daarvan, om een ​​enkele getalwaarde op te slaan. Er zijn slechts zoveel patronen die u kunt maken met 64 bits, wat betekent dat het aantal verschillende nummers dat kan worden weergegeven, beperkt is. Met N decimale cijfers kunt u 10 N- nummers weergeven. Evenzo, gegeven 64 binaire cijfers, kunt u 2 64 verschillende getallen voorstellen, wat ongeveer 18 quintillion is (een 18 met 18 nullen erna). Dat is veel.
 
+Fractional numbers are written by using a dot.
+```javascript
+9.81
+```
+For very big or very small numbers, you may also use scientific notation by adding an e (for exponent), followed by the exponent of the number.
+```javascript
+2.998e8
+```
+2.998 x10⁸ = 299,800,000.
+
+#### Arthmetic/Rekenkundig
+
+Het belangrijkste ding om te doen met getallen is rekenkundig. Rekenkundige bewerkingen zoals optellen of vermenigvuldigen nemen twee getalswaarden en produceren er een nieuw getal uit. Hier is hoe ze eruitzien in JavaScript:
+```javascript
+100  +  4  *  11
+```
+> De + en * symbolen worden _**operators**_ genoemd.
+
+vermenigvuldigen gebeurt eerst, maar net als bij wiskunde kan het ook zo:
+```javascript
+( 100  +  4 ) *  11
+```
 
 ## Chapter 2
 
