@@ -81,16 +81,69 @@ vermenigvuldigen gebeurt eerst, maar net als bij wiskunde kan het ook zo:
 ```javascript
 ( 100  +  4 ) *  11
 ```
+___
+
+### String
+
+The next basic data type is the string. Strings are used to represent text. They are written by enclosing their content in quotes.
+
+```js
+`Down on the sea`
+"Lie on the ocean"
+'Float on the ocean'
+```
+
 
 ### Samenvatting
 
-We hebben in dit hoofdstuk vier typen JavaScript-waarden bekeken: getallen, tekenreeksen, Booleans en niet-gedefinieerde waarden.
+> We hebben in dit hoofdstuk vier typen JavaScript-waarden bekeken: getallen, tekenreeksen, Booleans en niet-gedefinieerde waarden.
 
-Dergelijke waarden worden gemaakt door hun naam ( `true`, `null`) of waarde ( `13`, `"abc"``) in te voeren. U kunt waarden combineren en transformeren met operatoren. We zagen binaire operatoren voor rekenkundige ( `+`, `-`, `*`, `/`, en `%`), tekenreekssamenvoegingsoperator ( `+`), vergelijking ( `==`, `!=`, `===`, `!==`, `<`, `>`, `<=`, `>=`), en logica ( `&&`, `||`), evenals verschillende unaire operatoren ( -om een nummer te ontkennen, !te ontkennen logisch en typeofom het type van een waarde te vinden) en een ternaire operator ( ?:) om een ​​van de twee waarden te kiezen op basis van een derde waarde.
+> Dergelijke waarden worden gemaakt door hun naam ( `true`, `null`) of waarde ( `13`, `"abc"`) in te voeren. U kunt waarden combineren en transformeren met operatoren. We zagen binaire operatoren voor rekenkundige ( `+`, `-`, `*`, `/`, en `%`), tekenreekssamenvoegingsoperator ( `+`), vergelijking ( `==`, `!=`, `===`, `!==`, `<`, `>`, `<=`, `>=`), en logica ( `&&`, `||`), evenals verschillende unaire operatoren ( -om een nummer te ontkennen, !te ontkennen logisch en typeofom het type van een waarde te vinden) en een ternaire operator ( ?:) om een ​​van de twee waarden te kiezen op basis van een derde waarde.
 
-Dit geeft u voldoende informatie om JavaScript als een zakrekenmachine te gebruiken, maar niet veel meer. In het volgende hoofdstuk worden deze uitdrukkingen gecombineerd in standaardprogramma's.
+> Dit geeft u voldoende informatie om JavaScript als een zakrekenmachine te gebruiken, maar niet veel meer. In het volgende hoofdstuk worden deze uitdrukkingen gecombineerd in standaardprogramma's.
+
 ## Chapter 2 | Program Structure
+
 ### Expressions and statements
+A fragment of code that produces a value is called an expression. Every value that is written literally (such as 22 or "psychoanalysis") is an expression. An expression between parentheses is also an expression, as is a binary operator applied to two expressions or a unary operator applied to one.
+
+>A program is a list of statements.
+
+The simplest kind of statement is an expression with a semicolon after it. This is a program:
+```javascript
+1;
+!false;
+```
+
+### Bindings
+
+How does a program keep an internal state? How does it remember things? We have seen how to produce new values from old values, but this does not change the old values, and the new value has to be immediately used or it will dissipate again. To catch and hold values, JavaScript provides a thing called a binding, or variable:
+```javascript
+let caught = 5 * 5;
+```
+The special word (keyword) `let` indicates that this sentence is going to define a binding.
+
+The previous statement creates a binding called `caught` and uses it to grab hold of the number that is produced by multiplying 5 by 5.
+
+After a binding has been defined, its name can be used as an expression. The value of such an expression is the value the binding currently holds. Here’s an example:
+```js
+let ten = 10;
+console.log(ten * ten);
+// → 100
+```
+
+### Binding Names
+
+Bindings die gereserveerd zijn voor javascript
+The full list of keywords and reserved words is rather long.
+```js
+break case catch class const continue debugger default
+delete do else enum export extends false finally for
+function if implements import interface in instanceof let
+new package private protected public return static super
+switch this throw true try typeof var void while with yield
+```
+
 
 
 ## Chapter 3 | Functions
