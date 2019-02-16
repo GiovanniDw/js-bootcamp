@@ -6,6 +6,7 @@
 		- [Values/Waarden](#valueswaarden)
 		- [Numbers](#numbers)
 			- [Arthmetic/Rekenkundig](#arthmeticrekenkundig)
+			- [Special Numbers](#special-numbers)
 		- [String](#string)
 		- [Samenvatting](#samenvatting)
 	- [Chapter 2 | Program Structure](#chapter-2-program-structure)
@@ -102,7 +103,16 @@ vermenigvuldigen gebeurt eerst, maar net als bij wiskunde kan het ook zo:
 ( 100  +  4 ) *  11
 ```
 
-* * *
+#### Special Numbers
+
+There are 3 special values in JS that are considered numbers but dont behave like numbers.
+
+
+```js
+Infinity
+-Infinity
+NaN
+```
 
 ### String
 
@@ -113,6 +123,107 @@ The next basic data type is the string. Strings are used to represent text. They
 "Lie on the ocean"
 'Float on the ocean'
 ```
+Almost anything can be put in quotes and javascript will make a String out of it, Quotes inside quotes might be hard.
+
+When a backslash `\` is found inside quoted text it indicates the character after has a special meaning this is called **escaping** the character.
+
+`\n`:
+Newline  
+`\t`:
+Tab character
+
+```js
+"This is the first line\nAnd this is the second"
+```
+
+String can **not** be divided, multiplied, or substracted. The `+` operator can be used to glue 2 strings together.
+
+The following line will produce the string "concatenate":
+```js
+"con" + "cat" + "e" + "nate"
+```
+
+Backtick-quoted strings, usually called template literals, can do a few more tricks. Apart from being able to span lines, they can also embed other values.
+```js
+`half of 100 is ${100 / 2}`
+```
+When you write something inside ${} in a template literal, its result will be computed, converted to a string, and included at that position. The example produces `“half of 100 is 50”`.
+
+### Unary operators
+
+Not all operators are symbols, some are written as words. one Example is `typeof` operator, this produces a string value naming the type of the value you give it.
+
+```js
+console.log(typeof 4.5)
+// → number
+console.log(typeof "x")
+// → string
+```
+
+Other operators shown all operators on 2 values, but `typeof` takes only one
+
+Operators that use 2 values are called `binary` operators.
+Operators that take one are called `unary` operators.
+the `-` operator can be used as both operators.
+
+```js
+console.log(- (10 - 2))
+// → -8
+```
+
+### Boolean values
+
+Is usefill for values that are `yes` `no`, `on` `off`  
+Boolean type has 2 values `true` & `false`
+
+#### comparison
+One wat to produce boolean Values:
+```js
+console.log(3 > 2)
+// → true
+console.log(3 < 2)
+// → false
+```
+`>`:
+Greater than  
+`<`:
+Less than  
+`>=`:
+greater than or equal to  
+`<=`:
+less than or equal to  
+`==`:
+equal to  
+`!=`:
+not equal to  
+
+```js
+console.log("Itchy" != "Scratchy")
+// → true
+console.log("Apple" == "Orange")
+// → false
+```
+
+`NaN`:
+one value is not equal to itself
+
+#### Logical Operators
+Some opperators can be applied to boolean values themseles.  
+`&&`:
+and  
+`||`:
+or  
+`!`:
+Not
+
+### Empty values
+Special values:
+`null` & `undefined`
+Special values are values that carry no information.
+
+### Automatic Type Conversion
+
+
 
 ### Samenvatting
 
