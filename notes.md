@@ -262,7 +262,7 @@ The previous statement creates a binding called `caught` and uses it to grab hol
 
 After a binding has been defined, its name can be used as an expression. The value of such an expression is the value the binding currently holds. Here’s an example:
 
-```js
+```javascript
 let ten = 10;
 console.log(ten * ten);
 // → 100
@@ -271,9 +271,10 @@ console.log(ten * ten);
 ### Binding Names
 
 Bindings die gereserveerd zijn voor javascript
-The full list of keywords and reserved words is rather long.
+The full list of keywords and reserved words is rather long
 
-```js
+
+```
 break case catch class const continue debugger default
 delete do else enum export extends false finally for
 function if implements import interface in instanceof let
@@ -281,15 +282,39 @@ new package private protected public return static super
 switch this throw true try typeof var void while with yield
 ```
 
+### The Environment
+**Environment:**
+Collection of `bindings` and their `values` that exists at a given time.
+
+### Functions
+A lot of values in the default environment have the type `function`.
+
+`function`:
+A piece of program wrapped in a value.
+
+values can be applied in order to run the wrapped piece of program.
+
+The binding `prompt` holds a function that shows a little dialog box asking for user input.
+```js
+prompt("Enter passcode");
+```
+![prompt](https://eloquentjavascript.net/img/prompt.png)
+
+Executing a function is called invoking, calling or applying it.
+Call a function by putting parentheses `()` after an expression that produces a function value.
+
+
+
 ## Chapter 3 | Functions
 
-Functions zijn het brood en boter van JS.
+
 
 ### Defining a function
 
 Value of a Binding is a function
 
 ```javascript
+
 const square = function(x) {
   return x * x;
 };
@@ -298,7 +323,48 @@ console.log(square(12));
 // → 144
 ```
 
+Een function is gemaakt met een expression die begint met een keyword `function`. Functions hebben een set van `parameters` (in dit geval alleen x) en een `body`. de inhoud van de body bevat statements die worden executed als de functie word aangeroepen. De body van de function die op deze manier word aangemaakt moet altijd in braces`{}` gewrapped worden. ook als er een enkele statement is.
+
+Een functie kan meerdere parameters bevatten of geen enkele parameter.
+```js
+const makeNoise = function() {
+  console.log("Pling!");
+};
+
+makeNoise();
+// → Pling!
+```
+
+```js
+const power = function(base, exponent) {
+  let result = 1;
+  for (let count = 0; count < exponent; count++) {
+    result *= base;
+  }
+  return result;
+};
+
+console.log(power(2, 10));
+// → 1024
+```
+Sommige functies produceren een _value_ zoals `power` & `square`,  
+Andere functies produceren geen value zoals `makeNoise`, het resultaat van makeNoise is een _side effect_.  
+
+Een `return`statement bepaald de waarde die de functie terug geeft.
+
+Als de control een statement tegenkomt springt deze onmiddelijk uit de huidige functie en geeft de _gereturnde_ waarde aan de code die de functie heeft aangeroepen.
+
+Een `return` zonder _expression_ erna zorgt ervoor dat de functie `undefined` returned
+
+Functies die geen return hebben zoals `makeNoise` returnen ook `undefined`.
+
+Parameters van een functie gedragen zicht als normale `bindings`, maar de beginwaarde worden meegegeven bij het callen van de functie, niet door de code in de functie.
+
 ### Bindings and scopes
+
+Elke `Binding` heeft een _`Scope`_ welke deel uitmaakt van het programma in welke de `binding` zichtbaar is.
+
+
 
 ### Nested scope
 
