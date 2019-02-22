@@ -303,6 +303,237 @@ prompt("Enter passcode");
 Executing a function is called invoking, calling or applying it.
 Call a function by putting parentheses `()` after an expression that produces a function value.
 
+Values given to a function called `arguments`.
+Different functions might need a different number or different types of arguments.
+
+### The console.log function
+
+Binding names can not have `.` characters,
+`console.log` is not a simple binding. it is an expression that retrieves the `log` property from the value held by the console binding.
+
+### Return values
+
+`side effect`:
+Showing a dialox box or writing text to the screen.
+
+A lot of functions are useful because of the side effects they produce.
+Functions may also produce values, in which case they dont need to have a side effect to be usefull.
+
+For example the function `Math.max` takes any amount of number arguments and gives back the greatest.
+
+```js
+console.log(Math.max(2, 4));
+// → 4
+```
+
+When a function produces a value, its said to `return` that value.
+Anything that produces a value is an `expression` in JavaScript.
+Function calls van be used within larger expressions.
+
+a call to `Math.min` can be used as part of a plus expression:
+
+```js
+console.log(Math.min(2, 4) + 100);
+// → 102
+```
+
+### Control flow
+When a program has more than one statement, the statements are executed as if they are a story, From top to bottom.
+
+the example has 2 statements. The first asks for users number, the second shows the square of that number.
+
+```js
+let theNumber = Number(prompt("Pick a number"));
+console.log("Your number is the square root of " +
+            theNumber * theNumber);
+```
+The function `Number` converts a value to a number.
+
+### Conditional Exexution
+
+![controlflow](https://eloquentjavascript.net/img/controlflow-if.svg)
+Conditional execution is created with the `if` keyword in JavaScript.
+
+Example: Show the square of an input only if the input is a numbers
+```js
+let theNumber = Number(prompt("Pick a number"));
+if (!Number.isNaN(theNumber)) {
+  console.log("Your number is the square root of " +
+              theNumber * theNumber);
+}
+```
+
+Thus, the condition translates to “unless theNumber is not-a-number, do this”.
+
+The statement after the if is is wrapped in braces `{}`
+These can be used to group any number of statements into a single statement, called a `block`.
+
+The `else` and `if` keywords can be used to create 2 seperate alternative execution paths.
+
+```js
+let theNumber = Number(prompt("Pick a number"));
+if (!Number.isNaN(theNumber)) {
+  console.log("Your number is the square root of " +
+              theNumber * theNumber);
+} else {
+  console.log("Hey. Why didn't you give me a number?");
+}
+```
+
+If there are more than 2 paths to choose from you can 'chain' multiple `if/else` pairs together:
+
+```js
+let num = Number(prompt("Pick a number"));
+
+if (num < 10) {
+  console.log("Small");
+} else if (num < 100) {
+  console.log("Medium");
+} else {
+  console.log("Large");
+}
+```
+
+The schema for this program looks something like this:
+![controll nested](https://eloquentjavascript.net/img/controlflow-nested-if.svg)
+
+
+### While and do Loops
+
+**Loop**:
+Run a piece of code multiple times.
+![loop](https://eloquentjavascript.net/img/controlflow-loop.svg)
+
+If combined with a binding that counts:
+```js
+let number = 0;
+while (number <= 12) {
+  console.log(number);
+  number = number + 2;
+}
+// → 0
+// → 2
+//   … etcetera
+```
+
+Statement starting with the keyword `while` creates a loop.
+The word while is followed by an expression in parentheses and than a statement
+
+The loop keeps entering that statement as long as the expression produces a value that gives true when converted to Boolean.
+
+The `number` binding demonstrates the way a binding can track progress of a program, everytime the loop repeats `number` gets a value that is +2 than previous value, at the beginning it is compared to the number 12 to decide if the program is finished.
+
+We use two bindings: one to keep track of our result and one to count how often we have multiplied this result by 2. The loop tests whether the second binding has reached 10 yet and, if not, updates both bindings.
+
+```js
+let result = 1;
+let counter = 0;
+while (counter < 10) {
+  result = result * 2;
+  counter = counter + 1;
+}
+console.log(result);
+// → 1024
+```
+
+Difference `do` and `while` loop:
+a `do` loop always executes its body once.
+It tests if it should stop after the first execution.
+
+```js
+let yourName;
+do {
+  yourName = prompt("Who are you?");
+} while (!yourName);
+console.log(yourName);
+```
+This wil force you to enter a name. until it gets something that is not an empty string.
+
+the `!` operator converts value to boolean. all strings except `""` convert to true.
+
+
+### Indenting Code
+
+When new blocks are opened inside other blocks use proper indentiation
+
+```js
+if (false != true) {
+  console.log("That makes sense.");
+  if (1 < 2) {
+    console.log("No surprise there.");
+  }
+}
+```
+
+### For Loops
+
+```js
+for (let number = 0; number <= 12; number = number + 2) {
+  console.log(number);
+}
+// → 0
+// → 2
+//   … etcetera
+```
+All the statements that are related to the "state" of the loop are grouped together after `for`
+
+the `()` after a `for` keyword must contain 2 `;`.  
+The part before the first `;` _initializes_ the loop(usually by defining a binding)  
+The second part is the _expression_ that checks if the loop must continue.  
+The final part _updates_ the state of the loop after every iteration.
+
+```js
+let result = 1;
+for (let counter = 0; counter < 10; counter = counter + 1) {
+  result = result * 2;
+}
+console.log(result);
+// → 1024
+```
+code that computes 2¹⁰ using `for` insted of `while`
+
+
+### Breaking out of a loop.
+
+A loop condition producing `false` is not the only way a loop can finish.  
+
+`break`:
+A special statement that has effect of immediately jumping out of the enclosing loop.
+
+This program illustrates the break statement. It finds the first number that is both greater than or equal to 20 and divisible by 7.
+```js
+for (let current = 20; ; current = current + 1) {
+  if (current % 7 == 0) {
+    console.log(current);
+    break;
+  }
+}
+// → 21
+```
+
+Using `%` operator is an easy way to test if a number is devidable by another number. If it is the remainder if their division is zero.
+
+the  `for` loop in the example, does not have a part that checks for the end of the loop.
+The loop wil never stop unless the `break` statement inside is executed.
+
+If the break statment is removed, or if the condition is always true, the program wil get stuck in a `infinite loop`.
+
+`continue` is similar to `break`. when `continue` is encountered in a loop body control jumps out of the body and continues with the loops next iteration.
+
+### Updating Bindings Succinctly
+
+A program often needs to update a binding to hold a value based on the bindings previous value.  
+`counter = counter + 1;`  
+Shortcut for this
+`counter += 1;`
+
+`result *= 2` to double  
+`counter -= 1` to count down
+
+
+### Dispatching on a value with switch
+
+
 
 
 ## Chapter 3 | Functions
@@ -363,6 +594,48 @@ Parameters van een functie gedragen zicht als normale `bindings`, maar de beginw
 ### Bindings and scopes
 
 Elke `Binding` heeft een _`Scope`_ welke deel uitmaakt van het programma in welke de `binding` zichtbaar is.
+
+Global Bindings:
+Binding that are defined outside of any function or block, the scope is the whole program.
+
+Local Bindings:
+Created for function parameters or declared inside a function(can be reffered only in that function.)
+
+Bindings declared with `let` and `const` are local to the block that they are declared in, if created inside a loop the code after and before can not see it.
+
+Bindings dcreated with the `var` keyword are visible troughout the whole function that they appear in. If not in a function troughout the global scope.
+```js
+let x = 10;
+if (true) {
+  let y = 20;
+  var z = 30;
+  console.log(x + y + z);
+  // → 60
+}
+// y is not visible here
+console.log(x + z);
+// → 40
+```
+
+Each scope can look out into the scope around it. In the next example x is visible inside the block.  
+The exception is when multiple bindings have the same name. in that case code can only see the inner most one.
+
+When te code inside the `halve` function refers to `n`, it is seeing its own `n`, not the global `n`.
+
+```js
+const halve = function(n) {
+  return n / 2;
+};
+
+let n = 10;
+console.log(halve(100));
+// → 50
+console.log(n);
+// → 10
+```
+
+
+
 
 
 
