@@ -1,18 +1,38 @@
+
+# Notes
+
 <!-- TOC depthFrom:1 depthTo:6 withLinks:1 updateOnSave:1 orderedList:0 -->
 
 - [Notes](#notes)
-	- [Intro](#intro)
 	- [Chapter 1 | Values, Types, and Operators](#chapter-1-values-types-and-operators)
 		- [Values/Waarden](#valueswaarden)
 		- [Numbers](#numbers)
 			- [Arthmetic/Rekenkundig](#arthmeticrekenkundig)
 			- [Special Numbers](#special-numbers)
 		- [String](#string)
+		- [Unary operators](#unary-operators)
+		- [Boolean values](#boolean-values)
+			- [comparison](#comparison)
+			- [Logical Operators](#logical-operators)
+		- [Empty values](#empty-values)
+		- [Automatic Type Conversion](#automatic-type-conversion)
 		- [Samenvatting](#samenvatting)
 	- [Chapter 2 | Program Structure](#chapter-2-program-structure)
 		- [Expressions and statements](#expressions-and-statements)
 		- [Bindings](#bindings)
 		- [Binding Names](#binding-names)
+		- [The Environment](#the-environment)
+		- [Functions](#functions)
+		- [The console.log function](#the-consolelog-function)
+		- [Return values](#return-values)
+		- [Control flow](#control-flow)
+		- [Conditional Exexution](#conditional-exexution)
+		- [While and do Loops](#while-and-do-loops)
+		- [Indenting Code](#indenting-code)
+		- [For Loops](#for-loops)
+		- [Breaking out of a loop.](#breaking-out-of-a-loop)
+		- [Updating Bindings Succinctly](#updating-bindings-succinctly)
+		- [Dispatching on a value with switch](#dispatching-on-a-value-with-switch)
 	- [Chapter 3 | Functions](#chapter-3-functions)
 		- [Defining a function](#defining-a-function)
 		- [Bindings and scopes](#bindings-and-scopes)
@@ -39,11 +59,7 @@
 
 <!-- /TOC -->
 
-# Notes
 
-_You can write notes for each chapter here_.
-
-## Intro
 
 ## Chapter 1 | Values, Types, and Operators
 
