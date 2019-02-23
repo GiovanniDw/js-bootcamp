@@ -881,6 +881,205 @@ console.log(twice(5));
 // → 10
 ```
 
+The explict `local` binding from `warpValue` example is not needed, because the parameter is itself a local binding.
+
+In this example `multiplier` is called and creates an environment in which its `factor` parameter is bound to 2. the function value it returns, which is stored in `twice`, remembers this environment. so when that is called, it multiplies its argument by 2.
+
+### Recursion
+
+_recursion_
+: A function that calls itself  
+(its okay as long as it does not do it so often that it overflows the stack)
+
+Recursion allows some functions to be written in a different style.
+
+Example,(alt implementation of power)
+
+```js
+function power(base, exponent) {
+  if (exponent == 0) {
+    return 1;
+  } else {
+    return base * power(base, exponent - 1);
+  }
+}
+
+console.log(power(2, 3));
+// → 8
+```
+[Expl](https://eloquentjavascript.net/03_functions.html#p_/7VYZ2mLWF)
+
+Recursive solution:
+```js
+function findSolution(target) {
+  function find(current, history) {
+    if (current == target) {
+      return history;
+    } else if (current > target) {
+      return null;
+    } else {
+      return find(current + 5, `(${history} + 5)`) ||
+             find(current * 3, `(${history} * 3)`);
+    }
+  }
+  return find(1, "1");
+}
+
+console.log(findSolution(24));
+// → (((1 * 3) + 5) * 3)
+```
+> The inner function `find` does the actual recursing. It takes 2 arguments: The current number and a string that records how we reached this number. If it i finds a solution, it returns a string that shows hot to get to the target. If no solution can be found starting from this number it returns `null`.
+
+To do this the function performes one of three actions.
+
+- If current number is target number, the current history is a way to reach that target, so it is returned.
+- If the current number is greater than target, there is no sense in further exploring this branch because both adding and multiplying will only make the number bigger, so it returns `null`.
+
+- Finnaly, If still below target number, the function tries both posible paths that start from the current number by calling itself twice.  
+ - once for addition
+ - once for multiplication  
+
+ If the first call returns something that is not `null`, it is returned.  
+ otherwise, the second call is returned, regartless of whether it produces a string of `null`.
+
+To onderstand how this function produces the effect we're looking for.
+All the calls to `find` that are made when searching for a solution for the number 13.
+
+```
+find(1, "1")
+  find(6, "(1 + 5)")
+    find(11, "((1 + 5) + 5)")
+      find(16, "(((1 + 5) + 5) + 5)")
+        too big
+      find(33, "(((1 + 5) + 5) * 3)")
+        too big
+    find(18, "((1 + 5) * 3)")
+      too big
+  find(3, "(1 * 3)")
+    find(8, "((1 * 3) + 5)")
+      find(13, "(((1 * 3) + 5) + 5)")
+        found!
+```
+> The indentation indicates the depth of the call stack. The first time find is called, it starts by calling itself to explore the solution that starts with (1 + 5). That call will further recurse to explore every continued solution that yields a number less than or equal to the target number. Since it doesn’t find one that hits the target, it returns null back to the first call. There the || operator causes the call that explores (1 * 3) to happen. This search has more luck—its first recursive call, through yet another recursive call, hits upon the target number. That innermost call returns a string, and each of the || operators in the intermediate calls passes that string along, ultimately returning the solution.
+
+### Growing functions
+
+2 more or less natural ways for functions to be introduced into programs.
+
+1. is that you find yourself writing similar code multiple times.  
+ You'd prefer not to do that. Having more code means more space for mistakes to hide and more material to read for people trying to understand the program. So, Take the repeated functionality, find a good name for it, and put it into a function.
+
+2. is that you find you need some functionality that you have not written yet and that sounds like it deserves its own function.  
+You'll start by naming the function, and then you'll write its body. you might even start writing code that uses the function before you actually define the function
+
+The difficulity of finding a good name for a function is a good indication of how clear a concept it is that you are trying to wrap.
+
+Example,
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -914,19 +1113,6 @@ console.log(twice(5));
 
 
 <!--
-
-
-
-
-
-
-
-
-
-
-### Recursion
-
-### Growing functions
 
 ### Functions and side effects
 
