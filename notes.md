@@ -36,7 +36,7 @@
 	- [Chapter 3 | Functions](#chapter-3-functions)
 		- [Defining a function](#defining-a-function)
 		- [Bindings and scopes](#bindings-and-scopes)
-		- [Nested scope](#nested-scope)
+			- [Nested scope](#nested-scope)
 		- [Functions as values](#functions-as-values)
 		- [Declaration notation](#declaration-notation)
 		- [Arrow functions](#arrow-functions)
@@ -55,7 +55,7 @@
 	- [Chapter 9](#chapter-9)
 	- [Chapter 10](#chapter-10)
 	- [Chapter 11](#chapter-11)
-	- [](#)
+	- [-->](#-)
 
 <!-- /TOC -->
 
@@ -651,23 +651,278 @@ console.log(n);
 ```
 
 
+#### Nested scope
 
+Blocks and functions can be created inside other blocks and functions, producing multipe degrees of locality.
 
+This function that outputes the ingredients needed to make a batch of hummus, has another function inside it:
+```js
+const hummus = function(factor) {
+  const ingredient = function(amount, unit, name) {
+    let ingredientAmount = amount * factor;
+    if (ingredientAmount > 1) {
+      unit += "s";
+    }
+    console.log(`${ingredientAmount} ${unit} ${name}`);
+  };
+  ingredient(1, "can", "chickpeas");
+  ingredient(0.25, "cup", "tahini");
+  ingredient(0.25, "cup", "lemon juice");
+  ingredient(1, "clove", "garlic");
+  ingredient(2, "tablespoon", "olive oil");
+  ingredient(0.5, "teaspoon", "cumin");
+};
+```
+The code inside the `ingedient` function can see the `factor` binding from the outer function, But its local bindings `unit` & `ingredientAmount` are not visible in the outer function.
 
-
-### Nested scope
+`Lexical scoping`
+: the set of bindings visible inside a block is determined by the place of that block in the progeam text. Each local scope can also see the all the local scopes that contain it, All scopes can see the global scope.
 
 ### Functions as values
 
+A `function binding` usually simply acts as a name for a soecific piece of the program. Such a binding is defines once and never changed. this makes it easy to confuse the function and its name.
+
+A function value can do all the things that other values can do. You can use it as an arbitrary(willekeurig) expression, not just call it.  
+it is possible to store a function value in a new binding, pass it as an argument to a function, and so on.
+
+Similarly, a binding that holds a function is still just a regular binding and can, if not constant, be assigned a new value, Like this:
+```js
+let launchMissiles = function() {
+  missileSystem.launch("now");
+};
+if (safeMode) {
+  launchMissiles = function() {/* do nothing */};
+}
+```
 ### Declaration notation
+
+There is a shorter way to create a function binding.  
+when the `function` keyword is used at the start of a statement, it word differently.
+
+```js
+function square(x) {
+  return x * x;
+}
+```
+This is a function _declaration_. The statement defines the binding `square` and points it at the given function. It is easier to write and does not require a semicolon after the function.
+
+There is one subtlety with this form of function definition.
+
+```js
+console.log("The future says:", future());
+
+function future() {
+  return "You'll never have flying cars";
+}
+```
+The preceding code works, even tho the function is defined _below_ the code that uses it.  
+Function declarations are not part of the regular top-to-bottom flow of control.
+
+This is usefull because it offers freedom to order code in a more meaningfull way, without worrying about having to define all functions before they are used.
 
 ### Arrow functions
 
+The third notation of a function, It looks different from the other instead of `function` it uses an arrow `=>`
+
+```js
+const power = (base, exponent) => {
+  let result = 1;
+  for (let count = 0; count < exponent; count++) {
+    result *= base;
+  }
+  return result;
+};
+```
+The arrow comes after the list of parameters and is followed by the functions body.  
+
+This expresses someting like “this input (the parameters) produces this result (the body)”.
+
+When there is only one parameter name, you can omit the parentheses around the parameter list.
+If the body is a single expression, rather than a block in braces, that expression will be returned from the function.
+
+These 2 defenitions of square to the same thing:
+```js
+const square1 = (x) => { return x * x; };
+const square2 = x => x * x;
+```
+
+When an arrow function has no parameters at all, its parameter list is just an empty set of parentheses
+```js
+const horn = () => {
+  console.log("Toot");
+};
+```
+
 ### The call stack
+
+The way control flows trough functios is somewhat involved.
+A simple program that makes a few function calls:
+```js
+function greet(who) {
+  console.log("Hello " + who);
+}
+greet("Harry");
+console.log("Bye");
+```
+> A run through this program goes roughly like this: the call to greet causes control to jump to the start of that function (line 2). The function calls console.log, which takes control, does its job, and then returns control to line 2. There it reaches the end of the greet function, so it returns to the place that called it, which is line 4. The line after that calls console.log again. After that returns, the program reaches its end.
+
+`Callstack`
+: The place where the computer stores this context
+Everytime a function is called the current context is stored is stored on top of that stack.
+When a function returns, it removes the top contect from the stack and uses that context to continue execution.
+
+When stack grows to big, the computer wil fail with a message like “out of stack space” or “too much recursion”.
+Infinite back-and-forth between functions
+
+```js
+function chicken() {
+  return egg();
+}
+function egg() {
+  return chicken();
+}
+console.log(chicken() + " came first.");
+// → ??
+```
 
 ### Optional Arguments
 
+The next code is allowed and executed without problem:
+```js
+function square(x) { return x * x; }
+console.log(square(4, true, "hedgehog"));
+// → 16
+```
+
+`square` is defined with one paramater. Yet we call three, It ignores te extra arguments and computes the square of the first one.
+
+Javascipt is extremely broad-minded about the number of arguments you pass to a function.
+If passed to many it is ignored, if passed to few, the missing parameters get assigned `undefined`.
+
+The downside is that is when passed to many arguments to a function nobody will tell you about it
+
+The upside is that this behaviour can be used to allow a function to be called with different numbers of arguments.   
+
+Example, This minus function tries to imitate the `-` operator by acting on either one or two arguments:
+
+```js
+function minus(a, b) {
+  if (b === undefined) return -a;
+  else return a - b;
+}
+
+console.log(minus(10));
+// → -10
+console.log(minus(10, 5));
+// → 5
+```
+
+If u write an `=` operator after a parameter, followed by an expression, the value of that expression will replace the argument when it is not given.
+
+Example, This version of 	`power` makes its second argument optional. if you do not provide it or pass the value `undefined`, it will default to two, and the function will behave like `square`
+
+```js
+function power(base, exponent = 2) {
+  let result = 1;
+  for (let count = 0; count < exponent; count++) {
+    result *= base;
+  }
+  return result;
+}
+
+console.log(power(4));
+// → 16
+console.log(power(2, 6));
+// → 64
+```
+
 ### Closure
+
+The ability to treat a function as values, combined with the fact that local bindings are re-created every time a function is called, brings up an interesting question.
+
+What happens to local bindings when the function call that created them is no longer active?
+
+Example, The code defines a function, `wrapValue`, that creates a local binding. It then returnes a function that accesses and returns this local binding.
+
+```js
+function wrapValue(n) {
+  let local = n;
+  return () => local;
+}
+
+let wrap1 = wrapValue(1);
+let wrap2 = wrapValue(2);
+console.log(wrap1());
+// → 1
+console.log(wrap2());
+// → 2
+```
+
+This is allowed and works, both bindings can still be accessed. This situation is a good demonstration of the fact that local bindings are created anew for every call, and different calls can not trample on one anothers local bindings.
+
+
+`closure`
+: Being able to reference a specific instanse of a local binding in an enclosing scope.
+
+`a closure`
+: A function that references bindings from local scopes around it
+
+This behavior frees you from having to worry about lifetimes of bindings & makes it possible to use function bindings in creative ways.
+
+Example, With a little change, The previous example is turned into a way to create functions that multiply by an arbitrary amount
+
+```js
+function multiplier(factor) {
+  return number => number * factor;
+}
+
+let twice = multiplier(2);
+console.log(twice(5));
+// → 10
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--
+
+
+
+
+
+
+
+
+
 
 ### Recursion
 
@@ -693,4 +948,4 @@ console.log(n);
 
 ## Chapter 11
 
-##
+## -->
