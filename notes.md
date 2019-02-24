@@ -974,22 +974,88 @@ You'll start by naming the function, and then you'll write its body. you might e
 
 The difficulity of finding a good name for a function is a good indication of how clear a concept it is that you are trying to wrap.
 
-Example,
+Example, A progamm that prints 2 numbers(cows and chicken) on a farm, with the words Cows & Chickens after them, add 0 before the digits to always 3 digits long.
+
+```js
+function printFarmInventory(cows, chickens) {
+  let cowString = String(cows);
+  while (cowString.length < 3) {
+    cowString = "0" + cowString;
+  }
+  console.log(`${cowString} Cows`);
+  let chickenString = String(chickens);
+  while (chickenString.length < 3) {
+    chickenString = "0" + chickenString;
+  }
+  console.log(`${chickenString} Chickens`);
+}
+printFarmInventory(7, 11);
+```
+
+writing `.length` after a string expression will give us the length of that string. the `while` loop adds zero's in front of the number strings until they ar at least 3 characters long.
+
+Example, To add piggs a better way.(First attemp)
+```js
+function printZeroPaddedWithLabel(number, label) {
+  let numberString = String(number);
+  while (numberString.length < 3) {
+    numberString = "0" + numberString;
+  }
+  console.log(`${numberString} ${label}`);
+}
+
+function printFarmInventory(cows, chickens, pigs) {
+  printZeroPaddedWithLabel(cows, "Cows");
+  printZeroPaddedWithLabel(chickens, "Chickens");
+  printZeroPaddedWithLabel(pigs, "Pigs");
+}
+
+printFarmInventory(7, 11, 3);
+```
+This combines 3 things. into a single function.
+- Printing
+- Zero pagging
+- Adding a label
+
+Example, Single concept.
+```js
+function zeroPad(number, width) {
+  let string = String(number);
+  while (string.length < width) {
+    string = "0" + string;
+  }
+  return string;
+}
+
+function printFarmInventory(cows, chickens, pigs) {
+  console.log(`${zeroPad(cows, 3)} Cows`);
+  console.log(`${zeroPad(chickens, 3)} Chickens`);
+  console.log(`${zeroPad(pigs, 3)} Pigs`);
+}
+
+printFarmInventory(7, 16, 3);
+```
+
+### Functions and side effects
+
+Functions can be devided roughly into
+- those that are called for their side effects.
+- those that are called for their return value.  
+>It is possible to have both.  
 
 
+1. `printZeroPaddedWithLabel` is called for its side effect: it prints a line.  
+2. `ZeroPad` Is called for its return value.
 
+> The second is more usefull in situations than the first.
+Functions that create values are easier to combine in new ways than functions that direcly perform side effects.
 
+_Pure_ functions
+: A specific kind of value-producing function that has no side effects and does not rely on side effects from other code.  
+When called with same arguments it always produces the same value.
+> It does not read global bindings whose value might change.  
 
-
-
-
-
-
-
-
-
-
-
+_Nonpure_ functions tend to require more scaffolding to test.
 
 
 
@@ -1114,7 +1180,7 @@ Example,
 
 <!--
 
-### Functions and side effects
+
 
 ### Summary
 
