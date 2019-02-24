@@ -1058,38 +1058,108 @@ When called with same arguments it always produces the same value.
 _Nonpure_ functions tend to require more scaffolding to test.
 
 
+## Chapter 4
 
+### Data sets
 
+`Array`
+: a data type specifically for storing sequences of values.
 
+Example,
+```js
+let listOfNumbers = [2, 3, 5, 7, 11];
+console.log(listOfNumbers[2]);
+// → 5
+console.log(listOfNumbers[0]);
+// → 2
+console.log(listOfNumbers[2 - 1]);
+// → 3
+```
 
+First index of an array is zero. Retrieve the first element.
+`listOfNumbers[0]`
 
+### Properties
 
+`myString.length` accesses the `length` _property_ of the value in `myString`
 
+`Math.max` accesses the `max` _property_ in the `Math` object.
 
+Only `null` & `undefined` have no properties.
 
+```js
+null.length;
+// → TypeError: null has no properties
+```
 
+The 2 main ways to acces properties in Javascript are with dot and square brackets. `value.x` & `value[x]`
 
+when using dot The word after the dot is the littteral name of the property
 
+When using square brackets, the expression between the brackets is *evaluated* to get the property name.
 
+`array.length` To find the length of an array.
 
+### Methods
 
+`String` & `Array` objects contain in next to the `length` property a number of properties that hold function values
 
+```js
+let doh = "Doh";
+console.log(typeof doh.toUpperCase);
+// → function
+console.log(doh.toUpperCase());
+// → DOH
+```
 
+Properties that contain functions are generally called **methods** of the value they belong to.  
+`toUpperCase` is a method of a string.
 
+Example, 2 methods to manipulate arrays:
 
+```js
+let sequence = [1, 2, 3];
+sequence.push(4);
+sequence.push(5);
+console.log(sequence);
+// → [1, 2, 3, 4, 5]
+console.log(sequence.pop());
+// → 5
+console.log(sequence);
+// → [1, 2, 3, 4]
+```
 
+`.push` method
+: adds values to the end of an array.  
+`.pop` methods
+: removes values from the end of an array.  
 
+### Objecs
 
+Values of the type _object_ are random collections of properties.
+One way to create an object is using braces as an expression.
 
+```js
+let day1 = {
+  squirrel: false,
+  events: ["work", "touched tree", "pizza", "running"]
+};
+console.log(day1.squirrel);
+// → false
+console.log(day1.wolf);
+// → undefined
+day1.wolf = false;
+console.log(day1.wolf);
+// → false
+```
 
-
-
-
-
-
-
-
-
+Properties whose names are not valid binding names or valid numbers have to be quoted:
+```js
+let descriptions = {
+  work: "Went to work",
+  "touched tree": "Touched a tree"
+};
+```
 
 
 
@@ -1182,9 +1252,9 @@ _Nonpure_ functions tend to require more scaffolding to test.
 
 
 
-### Summary
 
-## Chapter 4
+
+
 
 ## Chapter 5
 
