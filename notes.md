@@ -46,9 +46,31 @@
 		- [Recursion](#recursion)
 		- [Growing functions](#growing-functions)
 		- [Functions and side effects](#functions-and-side-effects)
-		- [Summary](#summary)
-	- [Chapter 4](#chapter-4)
-	- [Chapter 5](#chapter-5)
+	- [Chapter 4 | Data Structures: Objects and Arrays](#chapter-4-data-structures-objects-and-arrays)
+		- [Data sets](#data-sets)
+		- [Properties](#properties)
+		- [Methods](#methods)
+		- [Objecs](#objecs)
+		- [Mutability](#mutability)
+		- [The Lyncanthrope's Logical](#the-lyncanthropes-logical)
+		- [Computing Correlation](#computing-correlation)
+		- [Array loops](#array-loops)
+		- [The Final analysis](#the-final-analysis)
+		- [Further Arraylogy](#further-arraylogy)
+		- [Strings and their properties](#strings-and-their-properties)
+		- [Rest parameters](#rest-parameters)
+		- [The Math object](#the-math-object)
+		- [Destructuring](#destructuring)
+		- [JSON](#json)
+	- [Chapter 5 | Higher-Order Functions](#chapter-5-higher-order-functions)
+		- [Abstraction](#abstraction)
+		- [Abstracting Repetition](#abstracting-repetition)
+		- [Higher-Order Functions](#higher-order-functions)
+		- [Script Data Set](#script-data-set)
+		- [Filtering Arrays](#filtering-arrays)
+		- [Transforming with manipulate](#transforming-with-manipulate)
+		- [Summarizing with Reduce](#summarizing-with-reduce)
+		- [Composability](#composability)
 	- [Chapter 6](#chapter-6)
 		- [Summary](#summary)
 	- [Chapter 8](#chapter-8)
@@ -58,7 +80,6 @@
 	- [-->](#-)
 
 <!-- /TOC -->
-
 
 
 ## Chapter 1 | Values, Types, and Operators
