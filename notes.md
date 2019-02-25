@@ -1058,7 +1058,7 @@ When called with same arguments it always produces the same value.
 _Nonpure_ functions tend to require more scaffolding to test.
 
 
-## Chapter 4
+## Chapter 4 | Data Structures: Objects and Arrays
 
 ### Data sets
 
@@ -1160,6 +1160,114 @@ let descriptions = {
   "touched tree": "Touched a tree"
 };
 ```
+Braces have _two_ meanings in javascript. at start of a statment they start a block of statements. otherwise they describe an object.
+
+Reading a property that does not exists give a value of `undefined`.
+
+`delete` operators:
+Cuts off a tentacle from object
+
+Example,
+```js
+let anObject = {left: 1, right: 2};
+console.log(anObject.left);
+// → 1
+delete anObject.left;
+console.log(anObject.left);
+// → undefined
+console.log("left" in anObject);
+// → false
+console.log("right" in anObject);
+// → true
+```
+
+The binary `in` operator when a pplied to a string and an object, tells you if that object has a property with that name.
+
+To find what property an object has use the `Object.keys` function. give it an object and it returns an array of strings. without the objects property names.
+
+```js
+console.log(Object.keys({x: 0, y: 0, z: 2}));
+// → ["x", "y", "z"]
+```
+
+`Object.assign` function
+: Copies all properties from one object into another.
+
+```js
+let objectA = {a: 1, b: 2};
+Object.assign(objectA, {b: 3, c: 4});
+console.log(objectA);
+// → {a: 1, b: 3, c: 4}
+```
+
+Arrays,a kind of object specialized for storing sequences of things.
+
+Example, Journal of Jacues keeps as an array of objects.
+```js
+let journal = [
+  {events: ["work", "touched tree", "pizza",
+            "running", "television"],
+   squirrel: false},
+  {events: ["work", "ice cream", "cauliflower",
+            "lasagna", "touched tree", "brushed teeth"],
+   squirrel: false},
+  {events: ["weekend", "cycling", "break", "peanuts",
+            "beer"],
+   squirrel: true},
+  /* and so on... */
+];
+```
+
+### Mutability
+
+### The Lyncanthrope's Logical
+
+### Computing Correlation
+
+### Array loops
+
+### The Final analysis
+
+### Further Arraylogy
+
+
+
+
+
+### Strings and their properties
+
+### Rest parameters
+
+### The Math object
+
+### Destructuring
+
+### JSON
+
+
+## Chapter 5 | Higher-Order Functions
+
+### Abstraction
+
+### Abstracting Repetition
+
+### Higher-Order Functions
+
+### Script Data Set
+
+### Filtering Arrays
+
+
+### Transforming with manipulate
+
+### Summarizing with Reduce
+
+Other common thing to do with arrays.
+- Compute single value from themseles
+- Finding script with most characters.
+
+`reduce` a higher-order operation
+: it Builds a value repeatedly taking a single element from an array and combining it with the current value.
 
 
 
@@ -1168,25 +1276,7 @@ let descriptions = {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+### Composability
 
 
 
@@ -1256,7 +1346,7 @@ let descriptions = {
 
 
 
-## Chapter 5
+
 
 ## Chapter 6
 
