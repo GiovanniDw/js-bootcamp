@@ -7,7 +7,6 @@
 // }
 var range = function (start, end, step) {
   array = [];
-
   if (step === undefined) {
     for (let i = start; i <= end ; i++) {
       array.push(i);
@@ -23,9 +22,6 @@ for (let i = start; i <= end ; i = i + step) {
 }
   return array;
 }
-
-
-
 
 const sum = function (x) {
   let result = 0;
@@ -48,3 +44,4 @@ console.log(sum(range(1, 10)));
 // → 55
 
 console.log(range(1, 10, 2));
+

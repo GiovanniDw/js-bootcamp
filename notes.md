@@ -4,80 +4,80 @@
 <!-- TOC depthFrom:1 depthTo:6 withLinks:1 updateOnSave:1 orderedList:0 -->
 
 - [Notes](#notes)
-	- [Chapter 1 | Values, Types, and Operators](#chapter-1-values-types-and-operators)
-		- [Values/Waarden](#valueswaarden)
-		- [Numbers](#numbers)
-			- [Arthmetic/Rekenkundig](#arthmeticrekenkundig)
-			- [Special Numbers](#special-numbers)
-		- [String](#string)
-		- [Unary operators](#unary-operators)
-		- [Boolean values](#boolean-values)
-			- [comparison](#comparison)
-			- [Logical Operators](#logical-operators)
-		- [Empty values](#empty-values)
-		- [Automatic Type Conversion](#automatic-type-conversion)
-		- [Samenvatting](#samenvatting)
-	- [Chapter 2 | Program Structure](#chapter-2-program-structure)
-		- [Expressions and statements](#expressions-and-statements)
-		- [Bindings](#bindings)
-		- [Binding Names](#binding-names)
-		- [The Environment](#the-environment)
-		- [Functions](#functions)
-		- [The console.log function](#the-consolelog-function)
-		- [Return values](#return-values)
-		- [Control flow](#control-flow)
-		- [Conditional Exexution](#conditional-exexution)
-		- [While and do Loops](#while-and-do-loops)
-		- [Indenting Code](#indenting-code)
-		- [For Loops](#for-loops)
-		- [Breaking out of a loop.](#breaking-out-of-a-loop)
-		- [Updating Bindings Succinctly](#updating-bindings-succinctly)
-		- [Dispatching on a value with switch](#dispatching-on-a-value-with-switch)
-	- [Chapter 3 | Functions](#chapter-3-functions)
-		- [Defining a function](#defining-a-function)
-		- [Bindings and scopes](#bindings-and-scopes)
-			- [Nested scope](#nested-scope)
-		- [Functions as values](#functions-as-values)
-		- [Declaration notation](#declaration-notation)
-		- [Arrow functions](#arrow-functions)
-		- [The call stack](#the-call-stack)
-		- [Optional Arguments](#optional-arguments)
-		- [Closure](#closure)
-		- [Recursion](#recursion)
-		- [Growing functions](#growing-functions)
-		- [Functions and side effects](#functions-and-side-effects)
-	- [Chapter 4 | Data Structures: Objects and Arrays](#chapter-4-data-structures-objects-and-arrays)
-		- [Data sets](#data-sets)
-		- [Properties](#properties)
-		- [Methods](#methods)
-		- [Objecs](#objecs)
-		- [Mutability](#mutability)
-		- [The Lyncanthrope's Logical](#the-lyncanthropes-logical)
-		- [Computing Correlation](#computing-correlation)
-		- [Array loops](#array-loops)
-		- [The Final analysis](#the-final-analysis)
-		- [Further Arraylogy](#further-arraylogy)
-		- [Strings and their properties](#strings-and-their-properties)
-		- [Rest parameters](#rest-parameters)
-		- [The Math object](#the-math-object)
-		- [Destructuring](#destructuring)
-		- [JSON](#json)
-	- [Chapter 5 | Higher-Order Functions](#chapter-5-higher-order-functions)
-		- [Abstraction](#abstraction)
-		- [Abstracting Repetition](#abstracting-repetition)
-		- [Higher-Order Functions](#higher-order-functions)
-		- [Script Data Set](#script-data-set)
-		- [Filtering Arrays](#filtering-arrays)
-		- [Transforming with manipulate](#transforming-with-manipulate)
-		- [Summarizing with Reduce](#summarizing-with-reduce)
-		- [Composability](#composability)
-	- [Chapter 6](#chapter-6)
-		- [Summary](#summary)
-	- [Chapter 8](#chapter-8)
-	- [Chapter 9](#chapter-9)
-	- [Chapter 10](#chapter-10)
-	- [Chapter 11](#chapter-11)
-	- [-->](#-)
+  - [Chapter 1 | Values, Types, and Operators](#chapter-1--values-types-and-operators)
+    - [Values/Waarden](#valueswaarden)
+    - [Numbers](#numbers)
+      - [Arthmetic/Rekenkundig](#arthmeticrekenkundig)
+      - [Special Numbers](#special-numbers)
+    - [String](#string)
+    - [Unary operators](#unary-operators)
+    - [Boolean values](#boolean-values)
+      - [comparison](#comparison)
+      - [Logical Operators](#logical-operators)
+    - [Empty values](#empty-values)
+    - [Automatic Type Conversion](#automatic-type-conversion)
+    - [Samenvatting](#samenvatting)
+  - [Chapter 2 | Program Structure](#chapter-2--program-structure)
+    - [Expressions and statements](#expressions-and-statements)
+    - [Bindings](#bindings)
+    - [Binding Names](#binding-names)
+    - [The Environment](#the-environment)
+    - [Functions](#functions)
+    - [The console.log function](#the-consolelog-function)
+    - [Return values](#return-values)
+    - [Control flow](#control-flow)
+    - [Conditional Exexution](#conditional-exexution)
+    - [While and do Loops](#while-and-do-loops)
+    - [Indenting Code](#indenting-code)
+    - [For Loops](#for-loops)
+    - [Breaking out of a loop.](#breaking-out-of-a-loop)
+    - [Updating Bindings Succinctly](#updating-bindings-succinctly)
+    - [Dispatching on a value with switch](#dispatching-on-a-value-with-switch)
+  - [Chapter 3 | Functions](#chapter-3--functions)
+    - [Defining a function](#defining-a-function)
+    - [Bindings and scopes](#bindings-and-scopes)
+      - [Nested scope](#nested-scope)
+    - [Functions as values](#functions-as-values)
+    - [Declaration notation](#declaration-notation)
+    - [Arrow functions](#arrow-functions)
+    - [The call stack](#the-call-stack)
+    - [Optional Arguments](#optional-arguments)
+    - [Closure](#closure)
+    - [Recursion](#recursion)
+    - [Growing functions](#growing-functions)
+    - [Functions and side effects](#functions-and-side-effects)
+  - [Chapter 4 | Data Structures: Objects and Arrays](#chapter-4--data-structures-objects-and-arrays)
+    - [Data sets](#data-sets)
+    - [Properties](#properties)
+    - [Methods](#methods)
+    - [Objecs](#objecs)
+    - [Mutability](#mutability)
+    - [The Lyncanthrope's Logical](#the-lyncanthropes-logical)
+    - [Computing Correlation](#computing-correlation)
+    - [Array loops](#array-loops)
+    - [The Final analysis](#the-final-analysis)
+    - [Further Arraylogy](#further-arraylogy)
+    - [Strings and their properties](#strings-and-their-properties)
+    - [Rest parameters](#rest-parameters)
+    - [The Math object](#the-math-object)
+    - [Destructuring](#destructuring)
+    - [JSON](#json)
+  - [Chapter 5 | Higher-Order Functions](#chapter-5--higher-order-functions)
+    - [Abstraction](#abstraction)
+    - [Abstracting Repetition](#abstracting-repetition)
+    - [Higher-Order Functions](#higher-order-functions)
+    - [Script Data Set](#script-data-set)
+    - [Filtering Arrays](#filtering-arrays)
+    - [Transforming with manipulate](#transforming-with-manipulate)
+    - [Summarizing with Reduce](#summarizing-with-reduce)
+    - [Composability](#composability)
+  - [Chapter 6](#chapter-6)
+    - [Summary](#summary)
+  - [Chapter 8](#chapter-8)
+  - [Chapter 9](#chapter-9)
+  - [Chapter 10](#chapter-10)
+  - [Chapter 11](#chapter-11)
+  - [-->](#)
 
 <!-- /TOC -->
 
@@ -1241,6 +1241,51 @@ let journal = [
 
 ### Mutability
 
+Object values can be modified.
+
+Values like `numbers, strings and boleans are all `_immutable_`
+
+it is **impossible** to change value of those types. 
+
+You can combine and derive new values, but specific string value will always remain the same.
+
+Objects work differently. You **can** change their properties, causing a single object value to have different content at different times.
+
+With objects, there is a difference between having two references to the same object and having two different objects that contain the same properties. Consider the following code:
+
+```js
+let object1 = {value: 10};
+let object2 = object1;
+let object3 = {value: 10};
+
+console.log(object1 == object2);
+// → true
+console.log(object1 == object3);
+// → false
+
+object1.value = 15;
+console.log(object2.value);
+// → 15
+console.log(object3.value);
+// → 10
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ### The Lyncanthrope's Logical
 
 ### Computing Correlation
@@ -1264,6 +1309,11 @@ let journal = [
 ### Destructuring
 
 ### JSON
+
+
+
+
+
 
 
 ## Chapter 5 | Higher-Order Functions
