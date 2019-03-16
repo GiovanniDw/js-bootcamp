@@ -52,7 +52,7 @@
     - [Methods](#methods)
     - [Objecs](#objecs)
     - [Mutability](#mutability)
-    - [The Lyncanthrope's Logical](#the-lyncanthropes-logical)
+    - [The Lyncanthrope's Log](#the-lyncanthropes-log)
     - [Computing Correlation](#computing-correlation)
     - [Array loops](#array-loops)
     - [The Final analysis](#the-final-analysis)
@@ -62,6 +62,7 @@
     - [The Math object](#the-math-object)
     - [Destructuring](#destructuring)
     - [JSON](#json)
+    - [Summary](#summary)
   - [Chapter 5 | Higher-Order Functions](#chapter-5--higher-order-functions)
     - [Abstraction](#abstraction)
     - [Abstracting Repetition](#abstracting-repetition)
@@ -72,7 +73,7 @@
     - [Summarizing with Reduce](#summarizing-with-reduce)
     - [Composability](#composability)
   - [Chapter 6](#chapter-6)
-    - [Summary](#summary)
+    - [Summary](#summary-1)
   - [Chapter 8](#chapter-8)
   - [Chapter 9](#chapter-9)
   - [Chapter 10](#chapter-10)
@@ -1269,34 +1270,92 @@ console.log(object2.value);
 console.log(object3.value);
 // → 10
 ```
+>The object1 and object2 bindings grasp the same object, which is why changing object1 also changes the value of object2. They are said to have the same identity. The binding object3 points to a different object, which initially contains the same properties as object1 but lives a separate life.
+
+### The Lyncanthrope's Log
+[The Lyncanthrope's LOG](https://eloquentjavascript.net/04_data.html#h_qHGOoBxOeE)
+```js
+let journal = [];
+
+function addEntry(events, squirrel) {
+  journal.push({events, squirrel});
+}
+```  
+>if a property name in brace notation isn’t followed by a value, its value is taken from the binding with the same name.
+
+Jacques records the day.
+
+```js
+addEntry(["work", "touched tree", "pizza", "running",
+          "television"], false);
+addEntry(["work", "ice cream", "cauliflower", "lasagna",
+          "touched tree", "brushed teeth"], false);
+addEntry(["weekend", "cycling", "break", "peanuts",
+          "beer"], true);
+```
+
+Correlation
+: is a measure of dependence between _statistical variables_. 
+
+Different than programming variable
+
+Zero correlation
+: the variables are not related.
+
+Correlation of one
+: Perfectly related
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-### The Lyncanthrope's Logical
 
 ### Computing Correlation
 
+_________
+
+
+
+
+
 ### Array loops
+
+```js
+for (let i = 0; i < JOURNAL.length; i++) {
+  let entry = JOURNAL[i];
+  // Do something with entry
+}
+console.log(JOURNAL);
+```
+This loop is common in classic javascript. Going over array one by one element at a time. comes up a lot.
+
+simpler way:
+
+```js
+for (let entry of JOURNAL) {
+  console.log(`${entry.events.length} events.`);
+}
+```
+When a `for` loop looks like this, with the word `of` after a variable definition, it will loop over the elements of the value given after `of`. This works not only for arrays but also for strings and some other data structures.
+
 
 ### The Final analysis
 
 ### Further Arraylogy
 
+`push` & `pop` earlier to remove and add elements at the end of an array
 
+The corresponding methods for adding and removing things from an array are called `shift` and `unshift` 
+
+```js
+let todoList = [];
+function remember(task) {
+  todoList.push(task);
+}
+function getTask() {
+  return todoList.shift();
+}
+function rememberUrgently(task) {
+  todoList.unshift(task);
+}
+```
 
 
 
@@ -1310,9 +1369,15 @@ console.log(object3.value);
 
 ### JSON
 
+### Summary
 
+>Objects and arrays (which are a specific kind of object) provide ways to group several values into a single value. Conceptually, this allows us to put a bunch of related things in a bag and run around with the bag, instead of wrapping our arms around all of the individual things and trying to hold on to them separately.
 
+>Most values in JavaScript have properties, the exceptions being null and undefined. Properties are accessed using value.prop or value["prop"]. Objects tend to use names for their properties and store more or less a fixed set of them. Arrays, on the other hand, usually contain varying amounts of conceptually identical values and use numbers (starting from 0) as the names of their properties.
 
+> There are some named properties in arrays, such as length and a number of methods. Methods are functions that live in properties and (usually) act on the value they are a property of.
+
+>You can iterate over arrays using a special kind of for loop—for (let element of array).
 
 
 
@@ -1339,9 +1404,6 @@ Other common thing to do with arrays.
 
 `reduce` a higher-order operation
 : it Builds a value repeatedly taking a single element from an array and combining it with the current value.
-
-
-
 
 
 
