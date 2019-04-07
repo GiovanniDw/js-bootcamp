@@ -79,6 +79,9 @@
   - [Chapter 10](#chapter-10)
   - [Chapter 11](#chapter-11)
   - [-->](#)
+  - [Chapter 13 | Javascript and the browser](#chapter-13--javascript-and-the-browser)
+    - [networks and internet](#networks-and-internet)
+    - [The Web](#the-web)
 
 <!-- /TOC -->
 
@@ -1246,7 +1249,7 @@ Object values can be modified.
 
 Values like `numbers, strings and boleans are all `_immutable_`
 
-it is **impossible** to change value of those types. 
+it is **impossible** to change value of those types.
 
 You can combine and derive new values, but specific string value will always remain the same.
 
@@ -1295,7 +1298,7 @@ addEntry(["weekend", "cycling", "break", "peanuts",
 ```
 
 Correlation
-: is a measure of dependence between _statistical variables_. 
+: is a measure of dependence between _statistical variables_.
 
 Different than programming variable
 
@@ -1309,7 +1312,24 @@ Correlation of one
 
 ### Computing Correlation
 
-_________
+To extract a two-by-two table for a specific event from the journal, we must loop over all the entries and tally how many times the event occurs in relation to squirrel transformations.
+
+```js
+function tableFor(event, journal) {
+  let table = [0, 0, 0, 0];
+  for (let i = 0; i < journal.length; i++) {
+    let entry = journal[i], index = 0;
+    if (entry.events.includes(event)) index += 1;
+    if (entry.squirrel) index += 2;
+    table[index] += 1;
+  }
+  return table;
+}
+
+console.log(tableFor("pizza", JOURNAL));
+// → [76, 9, 4, 1]
+```
+Arrays have an `includes` method that checks whether a given value exists in the array. The function uses that to determine whether the event name it is interested in is part of the event list for a given day.
 
 
 
@@ -1338,11 +1358,44 @@ When a `for` loop looks like this, with the word `of` after a variable definitio
 
 ### The Final analysis
 
+We need to compute a correlation for every type of event that occurs in the data set. To do that, we first need to find every type of event.
+
+```js
+function journalEvents(journal) {
+  let events = [];
+  for (let entry of journal) {
+    for (let event of entry.events) {
+      if (!events.includes(event)) {
+        events.push(event);
+      }
+    }
+  }
+  return events;
+}
+
+console.log(journalEvents(JOURNAL));
+// → ["carrot", "exercise", "weekend", "bread", …]
+```
+By going over all the events and adding those that aren’t already in there to the events array, the function collects every type of event.
+
+Using that, we can see all the correlations.
+```js
+for (let event of journalEvents(JOURNAL)) {
+  console.log(event + ":", phi(tableFor(event, JOURNAL)));
+}
+// → carrot:   0.0140970969
+// → exercise: 0.0685994341
+// → weekend:  0.1371988681
+// → bread:   -0.0757554019
+// → pudding: -0.0648203724
+// and so on...
+```
+
 ### Further Arraylogy
 
 `push` & `pop` earlier to remove and add elements at the end of an array
 
-The corresponding methods for adding and removing things from an array are called `shift` and `unshift` 
+The corresponding methods for adding and removing things from an array are called `shift` and `unshift`
 
 ```js
 let todoList = [];
@@ -1357,7 +1410,36 @@ function rememberUrgently(task) {
 }
 ```
 
+You add tasks to the end of the queue by calling `remember("groceries")`, and when you’re ready to do something, you call `getTask()` to get (and remove) the front item from the queue.
+The `rememberUrgently` function also adds a task but adds it to the front instead of the back of the queue.
 
+To search for a specific value, arrays provide an `indexOf` method
+
+To search from the end instead of the start, there’s a similar method called `lastIndexOf`.
+
+```js
+console.log([1, 2, 3, 2, 1].indexOf(2));
+// → 1
+console.log([1, 2, 3, 2, 1].lastIndexOf(2));
+// → 3
+```
+
+Another fundamental array method is `slice`, which takes start and end indices and returns an array that has only the elements between them.
+```js
+console.log([0, 1, 2, 3, 4].slice(2, 4));
+// → [2, 3]
+console.log([0, 1, 2, 3, 4].slice(2));
+// → [2, 3, 4]
+```
+The following example shows both `concat` and `slice` in action. It takes an array and an index, and it returns a new array that is a copy of the original array with the element at the given index removed.
+```js
+function remove(array, index) {
+  return array.slice(0, index)
+    .concat(array.slice(index + 1));
+}
+console.log(remove(["a", "b", "c", "d", "e"], 2));
+// → ["a", "b", "d", "e"]
+```
 
 ### Strings and their properties
 
@@ -1368,6 +1450,38 @@ function rememberUrgently(task) {
 ### Destructuring
 
 ### JSON
+_JSON_ (pronounced “Jason”), which stands for JavaScript Object Notation. It is widely used as a data storage and communication format on the Web, even in languages other than JavaScript.
+
+JSON looks similar to JavaScript’s way of writing arrays and objects, with a few restrictions.
+> All property names have to be surrounded by double quotes, and only simple data expressions are allowed—no function calls, bindings, or anything that involves actual computation. Comments are not allowed in JSON.
+
+A journal entry might look like this when represented as JSON data:
+
+```JSON
+{
+  "squirrel": false,
+  "events": ["work", "touched tree", "pizza", "running"]
+}
+```
+
+JavaScript gives us the functions `JSON.stringify` and `JSON.parse` to convert data to and from this format.
+
+`JSON.stringify`
+: takes a JavaScript value and returns a JSON-encoded string.
+
+`JSON.parse`
+: takes such a string and converts it to the value it encodes.
+
+```js
+let string = JSON.stringify({squirrel: false,
+                             events: ["weekend"]});
+console.log(string);
+// → {"squirrel":false,"events":["weekend"]}
+console.log(JSON.parse(string).events);
+// → ["weekend"]
+
+```
+
 
 ### Summary
 
@@ -1494,3 +1608,21 @@ Other common thing to do with arrays.
 ## Chapter 11
 
 ## -->
+
+
+## Chapter 13 | Javascript and the browser
+
+### networks and internet
+
+“A _network protocol_ describes a style of communication over a network. There are protocols for sending email, for fetching email, for sharing files, and even for controlling computers that happen to be infected by malicious software.”
+
+For example, the Hypertext Transfer Protocol (HTTP) is a protocol for retrieving named resources (chunks of information, such as web pages or pictures). It specifies that the side making the request should start with a line like this, naming the resource and the version of the protocol that it is trying to use:
+
+`GET /index.html HTTP/1.1`
+
+
+The Transmission Control Protocol (TCP) is a protocol that addresses this problem. All Internet-connected devices “speak” it, and most communication on the Internet is built on top of it.
+
+A TCP connection works as follows: one computer must be waiting, or listening, for other computers to start talking to it. To be able to listen for different kinds of communication at the same time on a single machine, each listener has a number (called a port) associated with it.
+
+### The Web
