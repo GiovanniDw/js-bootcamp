@@ -1702,7 +1702,8 @@ The same goes for the DOM. Nodes for elements, which represent HTML tags, determ
 
 Each DOM node object has a nodeType property, which contains a code (number) that identifies the type of node. Elements have code 1, which is also defined as the constant property `Node.ELEMENT_NODE`. Text nodes, representing a section of text in the document, get code 3 (`Node.TEXT_NODE`). Comments have code 8 (`Node.COMMENT_NODE`).
 
-Another way to visualize our document tree is as follows:
+Another way to visualize our document tree is as follows:  
+
 ![html tree](https://eloquentjavascript.net/img/html-tree.svg)
 
 The leaves are text nodes, and the arrows indicate parent-child relationships between nodes.
@@ -1717,31 +1718,70 @@ there is no way to create a new node and immediately add children or attributes 
 
 ### Moving through the tree
 
-DOM nodes contain a wealth of links to other nearby nodes. The following diagram illustrates these:
+DOM nodes contain a wealth of links to other nearby nodes. The following diagram illustrates these:  
+
 ![html links](https://eloquentjavascript.net/img/html-links.svg)
 
+Although the diagram shows only one link of each type, every node has a `parentNode` property that points to the node it is part of, if any. Likewise, every element node (node type 1) has a `childNodes` property that points to an array-like object holding its children.
+
+The `firstChild` and `lastChild` properties point to the first and last child elements or have the value `null` for nodes without children.
+
+Similarly, `previousSibling` and `nextSibling` point to adjacent nodes, which are nodes with the same parent that appear immediately before or after the node itself.  
+
+For a first child, `previousSibling` will be null, and for a last child, `nextSibling` will be null.
+
+There’s also the `children` property, which is like `childNodes` but contains only element (type 1) children, not other types of child nodes. This can be useful when you **aren’t interested** in text nodes.
+
+When dealing with a nested data structure like this one, recursive functions are often useful. The following function scans a document for text nodes containing a given string and returns true when it has found one:
+
+```js
+function talksAbout(node, string) {
+  if (node.nodeType == Node.ELEMENT_NODE) {
+    for (let i = 0; i < node.childNodes.length; i++) {
+      if (talksAbout(node.childNodes[i], string)) {
+        return true;
+      }
+    }
+    return false;
+  } else if (node.nodeType == Node.TEXT_NODE) {
+    return node.nodeValue.indexOf(string) > -1;
+  }
+}
+
+console.log(talksAbout(document.body, "book"));
+// → true
+```
+
+Because `childNodes` is not a real array, we cannot loop over it with `for/of` and have to run over the index range using a regular `for` loop or use `Array.from`.
+
+The `nodeValue` property of a text node holds the string of text that it represents.
 
 
+### Finding Elements
 
+The example document’s `<body>` tag does not have just three children (`<h1>` and two `<p>` elements) but actually has seven: those three, plus the spaces before, after, and between them.
 
+“Get the first link in the document”. And we can.
 
+```js
+let link = document.body.getElementsByTagName("a")[0];
+console.log(link.href);
+```
+All element nodes have a `getElementsByTagName` method, which collects all elements with the given tag name that are descendants (direct or indirect children) of that node and returns them as an array-like object.
 
+To find a specific _single_ node, you can give it an id attribute and use `document.getElementById` instead.
 
+```HTML
+<p>My ostrich Gertrude:</p>
+<p><img id="gertrude" src="img/ostrich.png"></p>
 
+<script>
+  let ostrich = document.getElementById("gertrude");
+  console.log(ostrich.src);
+</script>
+```
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+A third, similar method is `getElementsByClassName`, which, like `getElementsByTagName`, searches through the contents of an element node and retrieves all elements that have the given string in their `class` attribute.
 
 
 
