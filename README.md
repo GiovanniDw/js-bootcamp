@@ -1,3 +1,3 @@
 # js-bootcamp
 
-Notes taken from [https://eloquentjavascript.net/](https://eloquentjavascript.net/)
+Notes & exercises taken from [https://eloquentjavascript.net/](https://eloquentjavascript.net/)

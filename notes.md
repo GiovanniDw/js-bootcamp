@@ -1626,3 +1626,218 @@ The Transmission Control Protocol (TCP) is a protocol that addresses this proble
 A TCP connection works as follows: one computer must be waiting, or listening, for other computers to start talking to it. To be able to listen for different kinds of communication at the same time on a single machine, each listener has a number (called a port) associated with it.
 
 ### The Web
+
+Each document on the Web is named by a Uniform Resource Locator (URL), which looks something like this:
+
+```
+http://eloquentjavascript.net/13_browser.html
+|      |                      |               |
+protocol       server               path
+```
+_The first part_ tells us that this URL uses the HTTP protocol (as opposed to, for example, encrypted HTTP, which would be https://).   
+_Then comes the part_ that identifies which server we are requesting the document from.  
+_Last is a path string_ that identifies the specific document (or resource) we are interested in.
+
+
+### HTML
+
+HTML, which stands for _Hypertext Markup Language_, is the document format used for web pages.
+
+### HTML and JavaScript
+
+In the context of this book, the most important HTML tag is <script>. This tag allows us to include a piece of JavaScript in a document.
+
+```HTML
+<h1>Testing alert</h1>
+<script>alert("hello!");</script>
+```
+the alert function resembles `prompt`, in that it pops up a little window, but only shows a message without asking for input.
+
+The `<script>` tag can be given an `src` attribute to fetch a script file (a text file containing a JavaScript program) from a URL.
+
+```HTML
+<h1>Testing alert</h1>
+<script src="code/hello.js"></script>
+```
+
+### In the sandbox
+
+Isolating a programming environment is called sandboxing, the idea being that the program is harmlessly playing in a sandbox. But you should imagine this particular kind of sandbox as having a cage of thick steel bars over it so that the programs playing in it can’t actually get out.
+
+## Chapter 14 | The Document Object Model
+
+### Document structure
+
+
+```HTML
+<!doctype html>
+<html>
+  <head>
+    <title>My home page</title>
+  </head>
+  <body>
+    <h1>My home page</h1>
+    <p>Hello, I am Marijn and this is my home page.</p>
+    <p>I also wrote a book! Read it
+      <a href="http://eloquentjavascript.net">here</a>.</p>
+  </body>
+</html>
+```
+
+This page has the following structure:
+
+![html boxes](https://eloquentjavascript.net/img/html-boxes.svg)
+
+This representation is called the Document Object Model, or DOM for short.
+
+The global binding `document` gives us access to these objects. Its `documentElement` property refers to the object representing the `<html>` tag. Since every HTML document has a head and a body, it also has `head` and `body` properties, pointing at those elements.
+
+### Trees
+
+We call a data structure a _tree_ when it has a branching structure, has no cycles (a node may not contain itself, directly or indirectly), and has a single, well-defined _root_. In the case of the DOM, `document.documentElement` serves as the root.
+
+Application nodes may have children, whereas identifiers and values are leaves, or nodes without children.
+
+The same goes for the DOM. Nodes for elements, which represent HTML tags, determine the structure of the document. These can have child nodes. An example of such a node is `document.body`. Some of these children can be leaf nodes, such as pieces of text or comment nodes.
+
+Each DOM node object has a nodeType property, which contains a code (number) that identifies the type of node. Elements have code 1, which is also defined as the constant property `Node.ELEMENT_NODE`. Text nodes, representing a section of text in the document, get code 3 (`Node.TEXT_NODE`). Comments have code 8 (`Node.COMMENT_NODE`).
+
+Another way to visualize our document tree is as follows:
+![html tree](https://eloquentjavascript.net/img/html-tree.svg)
+
+The leaves are text nodes, and the arrows indicate parent-child relationships between nodes.
+
+### The standard
+
+Standards are often useful. But in this case, the advantage (cross-language consistency) isn’t all that compelling. Having an interface that is properly integrated with the language you are using will save you more time than having a familiar interface across languages.
+
+As an example of this poor integration, consider the `childNodes` property that element nodes in the DOM have. This property holds an array-like object, with a `length` property and properties labeled by numbers to access the child nodes. But it is an instance of the `NodeList` type, **not a real array**, so it **does not** have methods such as `slice` and `map`.
+
+there is no way to create a new node and immediately add children or attributes to it. Instead, you have to first create it and then add the children and attributes one by one, using side effects.
+
+### Moving through the tree
+
+DOM nodes contain a wealth of links to other nearby nodes. The following diagram illustrates these:
+![html links](https://eloquentjavascript.net/img/html-links.svg)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+### END
