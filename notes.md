@@ -72,21 +72,46 @@
     - [Transforming with manipulate](#transforming-with-manipulate)
     - [Summarizing with Reduce](#summarizing-with-reduce)
     - [Composability](#composability)
-  - [Chapter 6](#chapter-6)
+  - [Chapter 6 | The Secret Life of Objects](#chapter-6--the-secret-life-of-objects)
+    - [Methods](#methods-1)
+    - [Classes](#classes)
+    - [Class Notation](#class-notation)
+    - [Overriding derived properties](#overriding-derived-properties)
+    - [Maps](#maps)
+    - [Polymorphism](#polymorphism)
+    - [Symbols](#symbols)
+    - [The iterator interface](#the-iterator-interface)
+    - [Getters, setters, and statics](#getters-setters-and-statics)
+    - [Inheritance](#inheritance)
+    - [The instanceof operator -->](#the-instanceof-operator)
     - [Summary](#summary-1)
   - [Chapter 8](#chapter-8)
   - [Chapter 9](#chapter-9)
   - [Chapter 10](#chapter-10)
-  - [Chapter 11](#chapter-11)
   - [-->](#)
+  - [Chapter 11 | Asynchronous programming](#chapter-11--asynchronous-programming)
+    - [Asynchronous](#asynchronous)
+    - [Callbacks](#callbacks)
+    - [Promises](#promises)
   - [Chapter 13 | Javascript and the browser](#chapter-13--javascript-and-the-browser)
     - [networks and internet](#networks-and-internet)
     - [The Web](#the-web)
+    - [HTML](#html)
+    - [HTML and JavaScript](#html-and-javascript)
+    - [In the sandbox](#in-the-sandbox)
+  - [Chapter 14 | The Document Object Model](#chapter-14--the-document-object-model)
+    - [Document structure](#document-structure)
+    - [Trees](#trees)
+    - [The standard](#the-standard)
+    - [Moving through the tree](#moving-through-the-tree)
+    - [Finding Elements](#finding-elements)
+    - [END](#end)
 
 <!-- /TOC -->
 
 
 ## Chapter 1 | Values, Types, and Operators
+
 
 ### Values/Waarden
 
@@ -1526,6 +1551,104 @@ Other common thing to do with arrays.
 ### Composability
 
 
+## Chapter 6 | The Secret Life of Objects
+
+<!-- ### Encapsulation -->
+
+### Methods
+
+Methods are nothing more than properties that hold function values. This is a simple method:
+
+```js
+let rabbit = {};
+rabbit.speak = function(line) {
+  console.log(`The rabbit says '${line}'`);
+};
+
+rabbit.speak("I'm alive.");
+// → The rabbit says 'I'm alive.'
+```
+Usually a method needs to do something with the object it was called on. When a function is called as a method—looked up as a property and immediately called, as in `object.method()`—the binding called `this` in its body automatically points at the object that it was called on.
+
+```js
+function speak(line) {
+  console.log(`The ${this.type} rabbit says '${line}'`);
+}
+let whiteRabbit = {type: "white", speak};
+let hungryRabbit = {type: "hungry", speak};
+
+whiteRabbit.speak("Oh my ears and whiskers, " +
+                  "how late it's getting!");
+// → The white rabbit says 'Oh my ears and whiskers, how
+//   late it's getting!'
+hungryRabbit.speak("I could use a carrot right now.");
+// → The hungry rabbit says 'I could use a carrot right now.'
+```
+
+
+
+
+
+
+
+<!-- ### Prototypes -->
+
+### Classes
+
+JavaScript’s prototype system can be interpreted as a somewhat informal take on an object-oriented concept called _classes_. A class defines the shape of a type of object—what methods and properties it has. Such an object is called an _instance_ of the class.
+
+So to create an instance of a given class, you have to make an object that derives from the proper prototype, but you also have to make sure it, itself, has the properties that instances of this class are supposed to have. This is what a constructor function does.
+
+```js
+function makeRabbit(type) {
+  let rabbit = Object.create(protoRabbit);
+  rabbit.type = type;
+  return rabbit;
+}
+```
+
+
+### Class Notation
+
+So JavaScript classes are constructor functions with a prototype property. That is how they work, and until 2015, that was how you had to write them. These days, we have a less awkward notation.
+
+```js
+class Rabbit {
+  constructor(type) {
+    this.type = type;
+  }
+  speak(line) {
+    console.log(`The ${this.type} rabbit says '${line}'`);
+  }
+}
+
+let killerRabbit = new Rabbit("killer");
+let blackRabbit = new Rabbit("black");
+```
+
+
+<!--
+### Overriding derived properties
+
+### Maps
+
+### Polymorphism
+
+### Symbols
+
+### The iterator interface
+
+### Getters, setters, and statics
+
+### Inheritance
+
+### The instanceof operator -->
+
+
+
+
+
+
 
 
 
@@ -1586,17 +1709,6 @@ Other common thing to do with arrays.
 
 
 <!--
-
-
-
-
-
-
-
-
-
-## Chapter 6
-
 ### Summary
 
 ## Chapter 8
@@ -1604,10 +1716,48 @@ Other common thing to do with arrays.
 ## Chapter 9
 
 ## Chapter 10
-
-## Chapter 11
-
 ## -->
+## Chapter 11 | Asynchronous programming
+
+### Asynchronous
+
+_synchronous programming model_
+: things happen one at a time. When you call a function that performs a long-running action, it returns only when the action has finished and it can return the result. This stops your program for the time the action takes.
+
+_asynchronous model_
+: allows multiple things to happen at the same time. When you start an action, your program continues to run. When the action finishes, the program is informed and gets access to the result (for example, the data read from disk).
+
+![sync and async](https://eloquentjavascript.net/img/control-io.svg)
+
+### Callbacks
+
+One approach to asynchronous programming is to make functions that perform a slow action take an extra argument, a _callback_ function. The action is started, and when it finishes, the callback function is called with the result.
+
+### Promises
+
+A `promise`
+: an asynchronous action that may complete at some point and produce a value. It is able to notify anyone who is interested when its value is available.
+
+The easiest way to create a promise is by calling Promise.resolve. This function ensures that the value you give it is wrapped in a promise. If it’s already a promise, it is simply returned—otherwise, you get a new promise that immediately finishes with your value as its result.
+
+```js
+let fifteen = Promise.resolve(15);
+fifteen.then(value => console.log(`Got ${value}`));
+// → Got 15
+```
+
+This is how you’d create a promise-based interface for the readStorage function:  
+```js
+function storage(nest, name) {
+  return new Promise(resolve => {
+    nest.readStorage(name, result => resolve(result));
+  });
+}
+
+storage(bigOak, "enemies")
+  .then(value => console.log("Got", value));
+```
+
 
 
 ## Chapter 13 | Javascript and the browser

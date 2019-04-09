@@ -4,7 +4,17 @@
 
 <script>
  function byTagName(node, tagName) {
-   // Your code here.
+   if (node.nodeType == Node.ELEMENT_NODE) {
+     for (let i = 0; i < node.childNodes.length; i++) {
+       if (byTagName(node.childNodes[i], array)) {
+         return true;
+       }
+     }
+     return false;
+   } else if (node.nodeType == Node.TEXT_NODE) {
+     return node.nodeValue.indexOf(array) > -1;
+   }
+
  }
 
  console.log(byTagName(document.body, "h1").length);
@@ -15,8 +25,3 @@
  console.log(byTagName(para, "span").length);
  // → 2
 </script>
-
-
-The document.getElementsByTagName method returns all child elements with a given tag name. Implement your own version of this as a function that takes a node and a string (the tag name) as arguments and returns an array containing all descendant element nodes with the given tag name.
-
-To find the tag name of an element, use its nodeName property. But note that this will return the tag name in all uppercase. Use the toLowerCase or toUpperCase string methods to compensate for this.
